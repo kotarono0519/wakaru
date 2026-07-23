@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "wakaru",
+  "description": "人間が読みやすい日本語モードを提供するローカル marketplace。",
+  "owner": {
+    "name": "kotarono0519"
+  },
+  "plugins": [
+    {
+      "name": "wakaru",
+      "source": "./",
+      "category": "productivity",
+      "description": "人間が読みやすい日本語モード（要点圧縮＋構造化・プロンプトインジェクション誤発火配慮）。"
+    }
+  ]
+}

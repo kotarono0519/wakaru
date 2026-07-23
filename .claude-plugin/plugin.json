@@ -1,0 +1,36 @@
+{
+  "name": "wakaru",
+  "version": "0.1.0",
+  "description": "人間が読みやすい日本語モード。冗長・前置き・過剰敬語を削り、結論先出し＋箇条書きで構造化する。助詞・文法・技術用語・コードブロックは保持し、原始人口調のようには崩さない。SessionStart で1回ルール注入し、UserPromptSubmit で毎ターン状態記述のリマインダを注入（命令語彙ゼロ＝プロンプトインジェクション誤発火を避ける設計）。/wakaru で切替。",
+  "author": {
+    "name": "kotarono0519"
+  },
+  "license": "MIT",
+  "keywords": ["readability", "japanese", "日本語", "brevity", "structure", "hooks"],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/wakaru-activate.js\"",
+            "timeout": 5,
+            "statusMessage": "wakaru 読込中..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/wakaru-mode-tracker.js\"",
+            "timeout": 5,
+            "statusMessage": "wakaru 追跡中..."
+          }
+        ]
+      }
+    ]
+  }
+}
